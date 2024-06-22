@@ -15,8 +15,7 @@ const PORT = process.env.PORT || 3500;
 
 
 // Middlewares
-app.use(credentials);
-app.use(cors(corsOptions));
+app.use(cors({origin: "*"}));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());

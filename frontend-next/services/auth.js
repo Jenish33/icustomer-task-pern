@@ -2,7 +2,7 @@ import axios from 'axios';
 import jwt from 'jsonwebtoken'
 export const login = async (data) => {
   try {
-    const response = await axios.post('http://localhost:8000/login', data);
+    const response = await axios.post(' https://icustomer-backend-k0ocolwje-jenish33s-projects.vercel.app/login', data);
     const token = response?.data?.token;
     if(token){
       localStorage.setItem('token', token);

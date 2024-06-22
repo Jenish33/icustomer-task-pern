@@ -29,9 +29,7 @@ const ProductTable = () => {
   const filteredData = data.filter((item) => {
     return (
       item.name.toLowerCase().includes(search.toLowerCase()) &&
-      (filterCategory ? item.data_category === filterCategory : true) &&
-      item.record_count >= filterRecordCount[0] &&
-      item.record_count <= filterRecordCount[1]
+      (filterCategory ? item.data_category === filterCategory : true)
     );
   });
 
@@ -45,7 +43,7 @@ const ProductTable = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true)
-        const response = await axios.get('http://localhost:8000/products', {
+        const response = await axios.get('https://icustomer-backend-k0ocolwje-jenish33s-projects.vercel.app/products', {
           headers: { Authorization: `Bearer ${getToken()}` }
         });
         if (response.status === 200) {

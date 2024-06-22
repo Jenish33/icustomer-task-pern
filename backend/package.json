@@ -2,10 +2,10 @@
   "name": "icustomer-task",
   "version": "1.0.0",
   "description": "iCustomer_task",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node server",
-    "dev": "nodemon server",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "migrate-up": "db-migrate up initialize"
   },
   "author": "Jenish",
