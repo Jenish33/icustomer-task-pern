@@ -10,11 +10,12 @@ dotenv.config({path: path.join(home_page, 'config/config.env')});
 const handleLogin = async (req, res) => {
     const {username, password} = req.body;
     if(!username || !password) {
-        return res.status(400).json({ 'message': 'Username and Password are required'})
+        return res.json({status: 400, message: "Username and password are required"})
     }
     const result = await pool.query('SELECT * FROM public.users WHERE username = $1', [username])
     const user = result.rows[0]
-    if (!user) return res.sendStatus(401); //Handling Unauthorized 
+       
+    if (!user) return res.json({status: 401, message: "Invalid Credentials"})
 
     const match = await bcrypt.compare(password, user.password);
     if (match) {
@@ -34,7 +35,7 @@ const handleLogin = async (req, res) => {
         res.cookie('jwt', refreshToken, { httpOnly: true, sameSite: 'None', secure: true, maxAge: 24 * 60 * 60 * 1000 });
         res.json({ status:200, message: "LoggedIn Successful", token: accessToken })        
     } else {
-        res.sendStatus(401);
+        res.json({status: 401, message: "Invalid Credentials"})
     }
 
     
